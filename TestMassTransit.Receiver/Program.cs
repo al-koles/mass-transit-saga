@@ -1,6 +1,21 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using MassTransit;
+using TestMassTransit.Receiver.Consumers;
 
-app.MapGet("/", () => "Hello World!");
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddMassTransit(bus =>
+{
+    bus.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(true));
+
+    bus.AddConsumer<SampleEventConsumer>();
+
+    bus.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(builder.Configuration.GetConnectionString("rabbitmq"));
+        cfg.ConfigureEndpoints(context);
+    });
+});
+
+var app = builder.Build();
 
 app.Run();
