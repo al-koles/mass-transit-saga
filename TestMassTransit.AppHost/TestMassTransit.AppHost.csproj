@@ -12,13 +12,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
+        <PackageReference Include="Aspire.Hosting.AppHost" />
         <PackageReference Include="Aspire.Hosting.RabbitMQ" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TestMassTransit.Receiver\TestMassTransit.Receiver.csproj" />
-      <ProjectReference Include="..\TestMassTransit.Sender\TestMassTransit.Sender.csproj" />
+        <ProjectReference Include="..\TestMassTransit.Receiver\TestMassTransit.Receiver.csproj" />
+        <ProjectReference Include="..\TestMassTransit.Sender\TestMassTransit.Sender.csproj" />
     </ItemGroup>
 
 </Project>
