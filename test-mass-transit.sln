@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMassTransit.Sender", "TestMassTransit.Sender\TestMassTransit.Sender.csproj", "{35C68D05-57D8-48B5-BAF5-572F4DF2CF62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMassTransit.Receiver", "TestMassTransit.Receiver\TestMassTransit.Receiver.csproj", "{AC3ABA4F-44FC-491D-B4A9-0395B8E8567B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMassTransit.Contracts", "TestMassTransit.Contracts\TestMassTransit.Contracts.csproj", "{C67892DB-F11C-40CB-AE0B-D1F72056ACE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35C68D05-57D8-48B5-BAF5-572F4DF2CF62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35C68D05-57D8-48B5-BAF5-572F4DF2CF62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35C68D05-57D8-48B5-BAF5-572F4DF2CF62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35C68D05-57D8-48B5-BAF5-572F4DF2CF62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC3ABA4F-44FC-491D-B4A9-0395B8E8567B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC3ABA4F-44FC-491D-B4A9-0395B8E8567B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC3ABA4F-44FC-491D-B4A9-0395B8E8567B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC3ABA4F-44FC-491D-B4A9-0395B8E8567B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C67892DB-F11C-40CB-AE0B-D1F72056ACE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C67892DB-F11C-40CB-AE0B-D1F72056ACE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C67892DB-F11C-40CB-AE0B-D1F72056ACE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C67892DB-F11C-40CB-AE0B-D1F72056ACE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
