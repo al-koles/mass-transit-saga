@@ -14,11 +14,14 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\SampleEvent.ServiceDefaults\SampleEvent.ServiceDefaults.csproj" />
         <ProjectReference Include="..\TestMassTransit.Contracts\TestMassTransit.Contracts.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="MassTransit.RabbitMQ" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+        <PackageReference Include="Swashbuckle.AspNetCore" />
     </ItemGroup>
 
 </Project>
