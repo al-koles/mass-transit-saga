@@ -6,6 +6,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMassTransit.Receiver", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMassTransit.Contracts", "TestMassTransit.Contracts\TestMassTransit.Contracts.csproj", "{C67892DB-F11C-40CB-AE0B-D1F72056ACE0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{B228E8C3-03A7-4B7B-A548-7FC4D024C782}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMassTransit.AppHost", "TestMassTransit.AppHost\TestMassTransit.AppHost.csproj", "{293D212D-18EC-43CA-8ED6-35BE22734AC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +31,9 @@ Global
 		{C67892DB-F11C-40CB-AE0B-D1F72056ACE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C67892DB-F11C-40CB-AE0B-D1F72056ACE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C67892DB-F11C-40CB-AE0B-D1F72056ACE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{293D212D-18EC-43CA-8ED6-35BE22734AC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{293D212D-18EC-43CA-8ED6-35BE22734AC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{293D212D-18EC-43CA-8ED6-35BE22734AC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{293D212D-18EC-43CA-8ED6-35BE22734AC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
