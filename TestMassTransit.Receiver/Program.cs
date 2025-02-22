@@ -33,6 +33,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MapGet("test",
+    (ILogger<Program> logger) =>
+    {
+        logger.LogInformation("Test endpoint executed");
+
+        return Results.Ok("Hello World");
+    });
+
 app.MapDefaultEndpoints();
 
 app.Run();
