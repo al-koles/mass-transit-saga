@@ -1,4 +1,5 @@
 using MassTransit;
+using TestMassTransit.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +32,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapGet("/", () => "Hello World!");
+
+app.MapGet("sample",
+    (IPublishEndpoint publishEndpoint) =>
+    {
+        publishEndpoint.Publish(new SampleEvent(DateTime.Now));
+        
+        return Results.Ok("Event published!");
+    });
 
 app.MapDefaultEndpoints();
 

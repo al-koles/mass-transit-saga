@@ -1,4 +1,5 @@
 using MassTransit;
+using MassTransit.Logging;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
@@ -11,20 +12,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 const string serviceName = "receiver";
 builder.Logging.ClearProviders();
-builder.Logging.AddOpenTelemetry(options =>
-{
-    options
-        .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(serviceName))
-        .AddConsoleExporter();
-});
+// builder.Logging.AddOpenTelemetry(options =>
+// {
+//     options
+//         .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(serviceName))
+//         .AddConsoleExporter();
+// });
 builder.Services.AddOpenTelemetry()
     .ConfigureResource(resource => resource.AddService(serviceName))
     .WithTracing(tracing => tracing
+        .AddSource(DiagnosticHeaders.DefaultListenerName)
         .AddAspNetCoreInstrumentation()
         .AddConsoleExporter())
-    .WithMetrics(metrics => metrics
-        .AddAspNetCoreInstrumentation()
-        .AddConsoleExporter())
+    // .WithMetrics(metrics => metrics
+    //     .AddAspNetCoreInstrumentation()
+    //     .AddConsoleExporter())
     ;
 
 builder.Services.AddProblemDetails();
@@ -32,18 +34,18 @@ builder.Services.AddProblemDetails();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// builder.Services.AddMassTransit(bus =>
-// {
-//     bus.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(true));
-//
-//     bus.AddConsumer<SampleEventConsumer>();
-//
-//     bus.UsingRabbitMq((context, cfg) =>
-//     {
-//         cfg.Host(builder.Configuration.GetConnectionString("rabbitmq"));
-//         cfg.ConfigureEndpoints(context);
-//     });
-// });
+builder.Services.AddMassTransit(bus =>
+{
+    bus.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(true));
+
+    bus.AddConsumer<SampleEventConsumer>();
+
+    bus.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(builder.Configuration.GetConnectionString("rabbitmq"));
+        cfg.ConfigureEndpoints(context);
+    });
+});
 
 var app = builder.Build();
 
