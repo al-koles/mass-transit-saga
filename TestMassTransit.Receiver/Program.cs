@@ -1,27 +1,49 @@
 using MassTransit;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using TestMassTransit.Receiver.Consumers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddServiceDefaults();
+// builder.AddServiceDefaults();
+
+const string serviceName = "receiver";
+builder.Logging.ClearProviders();
+builder.Logging.AddOpenTelemetry(options =>
+{
+    options
+        .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(serviceName))
+        .AddConsoleExporter();
+});
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(resource => resource.AddService(serviceName))
+    .WithTracing(tracing => tracing
+        .AddAspNetCoreInstrumentation()
+        .AddConsoleExporter())
+    .WithMetrics(metrics => metrics
+        .AddAspNetCoreInstrumentation()
+        .AddConsoleExporter())
+    ;
 
 builder.Services.AddProblemDetails();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddMassTransit(bus =>
-{
-    bus.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(true));
-
-    bus.AddConsumer<SampleEventConsumer>();
-
-    bus.UsingRabbitMq((context, cfg) =>
-    {
-        cfg.Host(builder.Configuration.GetConnectionString("rabbitmq"));
-        cfg.ConfigureEndpoints(context);
-    });
-});
+// builder.Services.AddMassTransit(bus =>
+// {
+//     bus.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(true));
+//
+//     bus.AddConsumer<SampleEventConsumer>();
+//
+//     bus.UsingRabbitMq((context, cfg) =>
+//     {
+//         cfg.Host(builder.Configuration.GetConnectionString("rabbitmq"));
+//         cfg.ConfigureEndpoints(context);
+//     });
+// });
 
 var app = builder.Build();
 
@@ -41,6 +63,6 @@ app.MapGet("test",
         return Results.Ok("Hello World");
     });
 
-app.MapDefaultEndpoints();
+// app.MapDefaultEndpoints();
 
 app.Run();
