@@ -2,6 +2,12 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
+// var jaeger = builder.AddContainer("jaeger", "jaegertracing/all-in-one", "latest")
+//     .WithEnvironment("COLLECTOR_OTLP_ENABLED", "true")
+//     .WithEndpoint(4317, 4317, "http", "otlp-grpc")
+//     .WithEndpoint(16686, 16686, "http", "jaeger-frontend")
+//     .WithLifetime(ContainerLifetime.Persistent);
+
 var elasticsearch = builder.AddElasticsearch("elasticsearch",
         password: builder.AddParameter("ElasticsearchPassword"))
     .WithEnvironment("xpack.security.enabled", "false")
