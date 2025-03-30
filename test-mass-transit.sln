@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMassTransit.AppHost", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleEvent.ServiceDefaults", "SampleEvent.ServiceDefaults\SampleEvent.ServiceDefaults.csproj", "{50DE73F8-7047-4856-9754-43DA04618A1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMassTransit.GrpcService", "TestMassTransit.GrpcService\TestMassTransit.GrpcService.csproj", "{8F9D7C11-453B-4335-89F9-964C8DA801F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,5 +43,9 @@ Global
 		{50DE73F8-7047-4856-9754-43DA04618A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50DE73F8-7047-4856-9754-43DA04618A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50DE73F8-7047-4856-9754-43DA04618A1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F9D7C11-453B-4335-89F9-964C8DA801F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F9D7C11-453B-4335-89F9-964C8DA801F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F9D7C11-453B-4335-89F9-964C8DA801F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F9D7C11-453B-4335-89F9-964C8DA801F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
