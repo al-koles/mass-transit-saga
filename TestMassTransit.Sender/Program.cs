@@ -1,5 +1,8 @@
+using Grpc.Net.Client;
 using MassTransit;
+using Microsoft.AspNetCore.Http.HttpResults;
 using TestMassTransit.Contracts;
+using TestMassTransit.Sender;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +24,11 @@ builder.Services.AddMassTransit(bus =>
     });
 });
 
+builder.Services.AddGrpcClient<Greeter.GreeterClient>(o =>
+{
+    o.Address = new Uri(builder.Configuration.GetConnectionString("grpc-service")!);
+});
+
 var app = builder.Build();
 
 app.UseExceptionHandler();
@@ -39,6 +47,14 @@ app.MapGet("sample",
         publishEndpoint.Publish(new SampleEvent(DateTime.Now));
         
         return Results.Ok("Event published!");
+    });
+
+app.MapGet("say-hello",
+    async (Greeter.GreeterClient greeterClient) =>
+    {
+        var reply = await greeterClient.SayHelloAsync(new HelloRequest { Name = "Sender" });
+
+        return reply;
     });
 
 app.MapDefaultEndpoints();

@@ -14,4 +14,8 @@
     <PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageVersion Update="Grpc.AspNetCore" Version="2.70.0" />
+  </ItemGroup>
+
 </Project>

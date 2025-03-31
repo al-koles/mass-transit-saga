@@ -26,12 +26,15 @@ var rabbitmq = builder
     .WithDataVolume("rabbitmq_volume")
     .WithLifetime(ContainerLifetime.Persistent);
 
+var grpcService = builder.AddProject<TestMassTransit_GrpcService>("grpc-service");
+
 builder.AddProject<TestMassTransit_Sender>("sender")
     .WithExternalHttpEndpoints()
     .WithReference(rabbitmq)
     .WaitFor(rabbitmq)
     .WithReference(elasticsearch)
-    .WaitFor(elasticsearch);
+    .WaitFor(elasticsearch)
+    .WithEnvironment("ConnectionStrings__grpc-service", "http://localhost:5273");
 
 builder.AddProject<TestMassTransit_Receiver>("receiver")
     .WithExternalHttpEndpoints()

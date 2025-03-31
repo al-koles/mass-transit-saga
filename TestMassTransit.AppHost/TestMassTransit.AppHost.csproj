@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\TestMassTransit.GrpcService\TestMassTransit.GrpcService.csproj" />
         <ProjectReference Include="..\TestMassTransit.Receiver\TestMassTransit.Receiver.csproj" />
         <ProjectReference Include="..\TestMassTransit.Sender\TestMassTransit.Sender.csproj" />
     </ItemGroup>
