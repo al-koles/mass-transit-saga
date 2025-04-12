@@ -2,7 +2,8 @@ using TestMassTransit.GrpcService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.AddServiceDefaults();
+
 builder.Services.AddGrpc();
 
 var app = builder.Build();

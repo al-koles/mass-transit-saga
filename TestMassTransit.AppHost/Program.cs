@@ -26,7 +26,7 @@ var rabbitmq = builder
     .WithDataVolume("rabbitmq_volume")
     .WithLifetime(ContainerLifetime.Persistent);
 
-var grpcService = builder.AddProject<TestMassTransit_GrpcService>("grpc-service");
+builder.AddProject<TestMassTransit_GrpcService>("grpc-service");
 
 builder.AddProject<TestMassTransit_Sender>("sender")
     .WithExternalHttpEndpoints()
