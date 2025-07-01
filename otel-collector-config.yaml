@@ -1,0 +1,49 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+processors:
+  batch:
+
+#processors:
+#  batch:
+#    timeout: 1s
+#    send_batch_size: 1024
+
+exporters:
+  otlphttp:
+    endpoint: https://seq:5341/ingest/otlp
+    tls:
+      insecure: true
+#  otlp:
+#    endpoint: seq:5341
+#    endpoint: jaeger:4317
+#  elasticsearch:
+#    endpoints: ["http://elasticsearch:9200"]
+#    index: "traces"
+#    flush:
+#      interval: 5s
+#    retry:
+#      enabled: true
+#      initial_interval: 5s
+#      max_interval: 30s
+#      max_elapsed_time: 300s
+
+extensions:
+  health_check: {}
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+#      processors: [batch]
+      exporters: [otlphttp]
+#    metrics:
+#      receivers: [otlp]
+#      processors: [batch]
+#      exporters: [elasticsearch]
+    logs:
+      receivers: [otlp]
+#      processors: [batch]
+      exporters: [otlphttp] 
